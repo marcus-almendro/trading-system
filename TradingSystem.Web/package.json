@@ -1,0 +1,11 @@
+{
+  "name": "trading-system-web",
+  "version": "0.0.1",
+  "description": "web demo for trading system",
+  "dependencies": {
+    "express": "^4.15.2",
+    "grpc": "^1.10.1",
+    "kafka-node": "^2.4.1",
+    "socket.io": "^2.1.0"
+  }
+}
