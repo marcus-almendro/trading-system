@@ -15,12 +15,12 @@ namespace TradingSystem.Core
         KafkaSender _marketDataSender;
         Grpc.Core.Server _server;
 
-        public OrderBookServer(string host, int port, string brokerIds)
+        public OrderBookServer(string host, int port)
         {
-            _brokerIds = brokerIds;
+            _brokerIds = Environment.GetEnvironmentVariable("BrokerIds");
             _orderBook = new OrderBook();
-            _marketDataSender = new KafkaSender(brokerIds, "MarketData");
-            _marketDataReceiver = new KafkaReceiver(brokerIds, "MarketData", true);
+            _marketDataSender = new KafkaSender(_brokerIds, "MarketData");
+            _marketDataReceiver = new KafkaReceiver(_brokerIds, "MarketData", true);
             _server = new Grpc.Core.Server
             {
                 Services = { Service.BindService(this) },

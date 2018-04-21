@@ -37,7 +37,7 @@ namespace TradingSystem.Client
         static void Run(object state)
         {
             var n = (int)state * 100;
-            var c = new OrderBookClient("127.0.0.1", 23456, "localhost:9092");
+            var c = new OrderBookClient("127.0.0.1", 23456);
             c.Connect();
             ThreadsReady.Signal();
             ProcessSignal.WaitOne();    

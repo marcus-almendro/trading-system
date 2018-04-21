@@ -9,9 +9,9 @@ namespace TradingSystem.Core
         Service.ServiceClient _client;
         KafkaReceiver _marketDataReceiver;
 
-        public OrderBookClient(string serverHost, int serverPort, string brokerIds)
+        public OrderBookClient(string serverHost, int serverPort)
         {
-            _marketDataReceiver = new KafkaReceiver(brokerIds, "MarketData", true);
+            _marketDataReceiver = new KafkaReceiver(Environment.GetEnvironmentVariable("BrokerIds"), "MarketData", true);
             _marketDataReceiver.OnReceivedInput += (s, t) => OnMessage?.Invoke(this, t);
 
             _client = new Service.ServiceClient(new Channel(serverHost, serverPort, ChannelCredentials.Insecure));

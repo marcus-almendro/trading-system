@@ -21,10 +21,17 @@ docker run -d \
 sleep 3
 
 echo starting server...
-docker run -d --net=host trading-system-server
+docker run -d \
+    --net=host \
+    -e BrokerIds=localhost:9092 \
+    trading-system-server
 sleep 10
 
 echo starting web...
-docker run -d --net=host trading-system-web
+docker run -d \
+    --net=host \
+    -e ZookeeperAddr=localhost:2181 \
+    -e TradingSystemServerAddr=localhost:23456 \
+    trading-system-web 
 
 echo ok!

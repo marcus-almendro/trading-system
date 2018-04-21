@@ -3,9 +3,10 @@ var grpc = require('grpc');
 var app = express();
 var http = require('http').Server(app);
 var io = require('socket.io')(http);
+console.log('Connecting to ZK: ' + process.env.ZookeeperAddr);
 var kafka = require('kafka-node'),
   Consumer = kafka.Consumer,
-  client = new kafka.Client(),
+  client = new kafka.Client(process.env.ZookeeperAddr),
   consumer = new Consumer(
     client,
     [
@@ -17,7 +18,7 @@ var kafka = require('kafka-node'),
     }
   );
 var svc = grpc.load(__dirname + '/proto/Service.proto').TradingSystem.Core;
-var apiClient = new svc.Service('localhost:23456', grpc.credentials.createInsecure());
+var apiClient = new svc.Service(process.env.TradingSystemServerAddr, grpc.credentials.createInsecure());
 
 app.use(express.static('public'));
 
@@ -62,7 +63,7 @@ io.on('connection', function (socket) {
         return;
       }
 
-      var clientTemp = new kafka.Client(),
+      var clientTemp = new kafka.Client(process.env.ZookeeperAddr),
         consumerTemp = new Consumer(
           clientTemp,
           [

@@ -10,7 +10,7 @@ namespace TradingSystem.Server
     {
         public static void Main(string[] args)
         {
-            var svc = new OrderBookServer("0.0.0.0", 23456, "localhost:9092");
+            var svc = new OrderBookServer("0.0.0.0", 23456);
             svc.Connect();
             Task.Delay(-1);
         }
