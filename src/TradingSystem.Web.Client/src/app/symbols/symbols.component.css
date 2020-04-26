@@ -1,0 +1,9 @@
+.full-width-table {
+    width: 100%;
+}
+
+.add-new-symbol {
+	right: 10px;
+	position: absolute;
+	bottom: 10px;
+}

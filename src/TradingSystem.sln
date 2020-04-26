@@ -1,0 +1,85 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29806.167
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TradingSystem.PerfTest", "TradingSystem.PerfTest\TradingSystem.PerfTest.csproj", "{275C4D06-A148-4465-BC49-DC7E9192141D}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TradingSystem.Server", "TradingSystem.Server\TradingSystem.Server.csproj", "{0FA12FF3-AD52-4122-B55D-125E1A75976B}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TradingSystem.Tests", "TradingSystem.Tests\TradingSystem.Tests.csproj", "{BACEBD8C-7A0D-4297-816F-737B5210ED6E}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TradingSystem.Domain", "TradingSystem.Domain\TradingSystem.Domain.csproj", "{64F6FDFE-129C-4AE9-91D2-42AD0BC49D7B}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TradingSystem.Application", "TradingSystem.Application\TradingSystem.Application.csproj", "{78BB9E87-3442-4B51-9E9A-400D1C3AA5C3}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TradingSystem.Infrastructure", "TradingSystem.Infrastructure\TradingSystem.Infrastructure.csproj", "{E1716195-25FC-4A9A-AB04-4A25D2E96DDD}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TradingSystem.WebApp", "TradingSystem.WebApp\TradingSystem.WebApp.csproj", "{5A5EAEB0-DB4C-48ED-AC11-77A60A6E6990}"
+EndProject
+Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "TradingSystem.Web.Client", "TradingSystem.Web.Client\", "{9375DB44-3F13-4794-A57E-51BA388B00EE}"
+	ProjectSection(WebsiteProperties) = preProject
+		TargetFrameworkMoniker = ".NETFramework,Version%3Dv4.0"
+		Debug.AspNetCompiler.VirtualPath = "/localhost_51874"
+		Debug.AspNetCompiler.PhysicalPath = "TradingSystem.Web.Client\"
+		Debug.AspNetCompiler.TargetPath = "PrecompiledWeb\localhost_51874\"
+		Debug.AspNetCompiler.Updateable = "true"
+		Debug.AspNetCompiler.ForceOverwrite = "true"
+		Debug.AspNetCompiler.FixedNames = "false"
+		Debug.AspNetCompiler.Debug = "True"
+		Release.AspNetCompiler.VirtualPath = "/localhost_51874"
+		Release.AspNetCompiler.PhysicalPath = "TradingSystem.Web.Client\"
+		Release.AspNetCompiler.TargetPath = "PrecompiledWeb\localhost_51874\"
+		Release.AspNetCompiler.Updateable = "true"
+		Release.AspNetCompiler.ForceOverwrite = "true"
+		Release.AspNetCompiler.FixedNames = "false"
+		Release.AspNetCompiler.Debug = "False"
+		VWDPort = "51874"
+		SlnRelativePath = "TradingSystem.Web.Client\"
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{275C4D06-A148-4465-BC49-DC7E9192141D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{275C4D06-A148-4465-BC49-DC7E9192141D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{275C4D06-A148-4465-BC49-DC7E9192141D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{275C4D06-A148-4465-BC49-DC7E9192141D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0FA12FF3-AD52-4122-B55D-125E1A75976B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0FA12FF3-AD52-4122-B55D-125E1A75976B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0FA12FF3-AD52-4122-B55D-125E1A75976B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0FA12FF3-AD52-4122-B55D-125E1A75976B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BACEBD8C-7A0D-4297-816F-737B5210ED6E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BACEBD8C-7A0D-4297-816F-737B5210ED6E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BACEBD8C-7A0D-4297-816F-737B5210ED6E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BACEBD8C-7A0D-4297-816F-737B5210ED6E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{64F6FDFE-129C-4AE9-91D2-42AD0BC49D7B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{64F6FDFE-129C-4AE9-91D2-42AD0BC49D7B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{64F6FDFE-129C-4AE9-91D2-42AD0BC49D7B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{64F6FDFE-129C-4AE9-91D2-42AD0BC49D7B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{78BB9E87-3442-4B51-9E9A-400D1C3AA5C3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{78BB9E87-3442-4B51-9E9A-400D1C3AA5C3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{78BB9E87-3442-4B51-9E9A-400D1C3AA5C3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{78BB9E87-3442-4B51-9E9A-400D1C3AA5C3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E1716195-25FC-4A9A-AB04-4A25D2E96DDD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E1716195-25FC-4A9A-AB04-4A25D2E96DDD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E1716195-25FC-4A9A-AB04-4A25D2E96DDD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E1716195-25FC-4A9A-AB04-4A25D2E96DDD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5A5EAEB0-DB4C-48ED-AC11-77A60A6E6990}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5A5EAEB0-DB4C-48ED-AC11-77A60A6E6990}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5A5EAEB0-DB4C-48ED-AC11-77A60A6E6990}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5A5EAEB0-DB4C-48ED-AC11-77A60A6E6990}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9375DB44-3F13-4794-A57E-51BA388B00EE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9375DB44-3F13-4794-A57E-51BA388B00EE}.Release|Any CPU.ActiveCfg = Debug|Any CPU
+		{9375DB44-3F13-4794-A57E-51BA388B00EE}.Release|Any CPU.Build.0 = Debug|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {C371F80A-C11D-4894-9AD8-A48825DC7481}
+	EndGlobalSection
+EndGlobal

@@ -1,8 +1,24 @@
-# Trading System Proof of Concept
-This is a simple trading system based on Kafka for event sourcing, .Net Core 2 for server side processing (order book / matching end) and Socket.IO for client-side streaming.
+# Trading System 
+This project is an implementation of a trading system using DDD and Kafka for event sourcing, it uses Consul for service discovery and leader election.
 
-To test this project:
-1) run the script "build-docker-images.sh" (needs docker > v17)
-2) run the script "run.sh"
+### Architecture
+![Architecture](https://github.com/marcus-almendro/trading-system/blob/master/docs/architecture.png)
 
-Access your localhost:5000 via browser and have fun!
+### Components used
+* .NET Core 3
+* Angular Material
+* SignalR
+* Gridster
+* gRPC
+* Kafka
+* Consul
+* Docker
+* AutoMapper
+* FluentAssertions
+* Moq
+* xUnit
+
+### Steps to run:
+1) Clone repository
+2) docker-compose up
+3) go to http://localhost:8080 and have fun ;)

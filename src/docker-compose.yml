@@ -1,0 +1,145 @@
+version: '3'
+services:
+  
+  web1:
+    build: 
+      context: .
+      dockerfile: ./Web.dockerfile
+    image: trading-system-webapp
+    ports:
+      - "8080:80"
+    dns: 
+      - 172.16.0.21
+      - 172.16.0.22
+      - 172.16.0.23
+    environment: 
+      GrpcAdapter__Hostname: trading-system-server.service.consul
+      KafkaAdapter__BrokerList: kafka:9095
+      ConsulAdapter__Address: http://consul-server-bootstrap:8500
+    networks: 
+      - frontend
+      - backend
+
+  server1:
+    build: 
+      context: .
+      dockerfile: ./Server.dockerfile
+    image: trading-system-server
+    ports:
+      - "5000:5000"
+    environment: 
+      GrpcAdapter__Hostname: server1
+      KafkaAdapter__BrokerList: kafka:9095
+      ConsulAdapter__Address: http://consul-server-bootstrap:8500
+      ConsulAdapter__SessionTTL: 5
+    networks:
+      backend:
+        ipv4_address: 172.16.0.11
+
+  server2:
+    image: trading-system-server
+    ports:
+      - "5001:5000"
+    environment: 
+      GrpcAdapter__Hostname: server2
+      KafkaAdapter__BrokerList: kafka:9095
+      ConsulAdapter__Address: http://consul-server-bootstrap:8500
+      ConsulAdapter__SessionTTL: 5
+    networks:
+      backend:
+        ipv4_address: 172.16.0.12
+
+  # zookeeper and kafka
+  zk:
+    image: confluentinc/cp-zookeeper:latest
+    environment: 
+      ZOOKEEPER_CLIENT_PORT: 2181
+    networks: 
+      - backend
+
+  kafka:
+    image: confluentinc/cp-kafka:latest
+    ports:
+      - "9092:9092"
+    environment: 
+      KAFKA_ZOOKEEPER_CONNECT: zk:2181
+      KAFKA_LISTENERS: L1://:9095,L2://:9092
+      KAFKA_ADVERTISED_LISTENERS: L1://kafka:9095,L2://localhost:9092
+      KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: L1:PLAINTEXT,L2:PLAINTEXT
+      KAFKA_INTER_BROKER_LISTENER_NAME: L1
+      KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
+      KAFKA_AUTO_CREATE_TOPICS_ENABLE: 'false'
+    networks: 
+      - backend
+
+  kafka-create-topics:
+    image: confluentinc/cp-kafka:latest
+    command: >- 
+      sh -c 
+        "sleep 15 && 
+         kafka-topics --create --bootstrap-server kafka:9095 --replication-factor 1 --partitions 1 --topic events && 
+         kafka-topics --create --bootstrap-server kafka:9095 --replication-factor 1 --partitions 1 --topic lock"
+    networks: 
+      - backend
+
+  # consul servers
+  consul-server-1: &consul
+    image: consul:latest
+    environment: 
+      CONSUL_ALLOW_PRIVILEGED_PORTS: 'true'
+    volumes:
+      - ./consul-config/config.json:/consul.d/config.json:ro
+    networks:
+      backend:
+        ipv4_address: 172.16.0.21
+    command: "agent -retry-join consul-server-bootstrap -config-dir=./consul.d"
+
+  consul-server-2:
+    <<: *consul
+    networks:
+      backend:
+        ipv4_address: 172.16.0.22
+
+  consul-server-bootstrap:
+    <<: *consul
+    ports:
+      - "8400:8400"
+      - "8500:8500"
+    networks:
+      backend:
+        ipv4_address: 172.16.0.23
+    command: "agent -bootstrap-expect 3 -ui -config-dir=./consul.d"
+
+  # agent for server 1
+  consul-agent-1:
+    <<: *consul
+    networks:
+      backend:
+        ipv4_address: 172.16.0.24
+    volumes:
+      - ./consul-config/server1.json:/consul.d/server1.json:ro
+    command: "agent -enable-script-checks -config-dir=./consul.d"
+
+  # agent for server 2
+  consul-agent-2:
+    <<: *consul
+    networks:
+      backend:
+        ipv4_address: 172.16.0.25
+    volumes:
+      - ./consul-config/server2.json:/consul.d/server2.json:ro
+    command: "agent -enable-script-checks -config-dir=./consul.d"
+
+networks:
+  frontend:
+    driver: bridge
+    ipam:
+      driver: default
+      config:
+      - subnet: 172.16.1.0/24
+  backend:
+    driver: bridge
+    ipam:
+      driver: default
+      config:
+      - subnet: 172.16.0.0/24

@@ -1,0 +1,17 @@
+{
+  "client_addr": "0.0.0.0",
+  "retry_join": ["consul-server-bootstrap"],
+  "service": 
+    {
+      "name": "trading-system-server",
+      "tags": ["trading-system-server"],
+      "address": "172.16.0.12",
+      "port": 80,
+      "check": {
+        "id": "grpc-check",
+        "name": "Service health status",
+        "grpc": "172.16.0.12:5000",
+        "interval": "5s"
+      }
+    }
+}

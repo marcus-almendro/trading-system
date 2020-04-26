@@ -1,0 +1,111 @@
+syntax="proto3";
+package TradingSystem.Infrastructure.Serialization.gRPC;
+option csharp_namespace = "TradingSystem.Infrastructure.Adapters.Service.gRPC";
+
+service OrderBookServiceGrpc {
+  rpc AddOrderBook(NewOrderBook) returns (ErrorCodeMsg) {}
+  rpc GetAllOrderBooks(GetAllOrderBooksRequest) returns (OrderBookCollection) {}
+  rpc AddBuyOrder(OrderMsg) returns (ErrorCodeMsg) {}
+  rpc AddSellOrder(OrderMsg) returns (ErrorCodeMsg) {}
+  rpc UpdateOrder(OrderMsg) returns (ErrorCodeMsg) {}
+  rpc DeleteOrder(OrderMsg) returns (ErrorCodeMsg) {}
+  rpc Status(GetStatus) returns (ServiceStatus) {}
+}
+
+message GetAllOrderBooksRequest { 
+
+}
+
+message OrderBookCollection {
+    repeated string Symbols = 1;
+}
+
+message NewOrderBook {
+    string Symbol = 1;
+}
+
+message ErrorCodeMsg {
+  int32 Value = 1;
+  string Description = 2;
+}
+
+enum OrderType {
+	BUY = 0;
+	SELL = 1;
+    UPDATE = 3;
+    DELETE = 4;
+}
+
+message OrderMsg {
+  string Symbol                = 1;
+  int64 Id                     = 2;
+  int64 Price                  = 3;
+  int64 Size                   = 4;
+  int32 TraderId               = 5;
+  OrderType Type			   = 6;
+}
+
+message OrderCreatedEventMsg {
+  int64 Id 					   = 1;
+  int64 Price 				   = 2;
+  int64 Size 				   = 3;
+  int32 TraderId 			   = 4;
+  OrderType Type			   = 6;
+}
+
+message OrderUpdatedEventMsg {
+  int64 Id 					   = 1;
+  int64 Price 				   = 2;
+  int64 Size 				   = 3;
+  int32 TraderId 			   = 4;
+  OrderType Type			   = 6;
+}
+
+message OrderDeletedEventMsg {
+  int64 Id 					   = 1;
+  int64 Price 				   = 2;
+  int64 Size 				   = 3;
+  int32 TraderId 			   = 4;
+  OrderType Type			   = 6;
+}
+
+message TradeEventMsg {
+  int64 TakerOrderId 		   = 1;
+  int64 TakenOrderId 		   = 2;
+  int64 Price 				   = 3;
+  int64 ExecutedSize 		   = 4;
+}
+
+message OrderBookCreatedEventMsg {
+    
+}
+
+message DomainEventMsg {
+  string Symbol                = 1;
+  int64 CreationDate 		   = 2;
+  oneof EventType {
+    OrderCreatedEventMsg        orderCreated     = 3;
+    OrderUpdatedEventMsg        orderUpdated     = 4;
+    OrderDeletedEventMsg        orderDeleted     = 5;
+	TradeEventMsg               trade            = 6;
+    OrderBookCreatedEventMsg    orderBookCreated = 7;
+  }
+}
+
+message DomainEventCollection {
+    int64 MessageId = 1;
+    int64 Offset = 2;
+    repeated DomainEventMsg Events = 3;
+}
+
+message ServiceStatus {
+    bool IsLeader               = 1;
+    int64 LastStatusChange      = 2;
+    int32 TotalOrders           = 3;
+    repeated OrderMsg AllOrders = 4;
+}
+
+message GetStatus {
+    string Symbol    = 1;
+    bool IncludeDump = 2;
+}

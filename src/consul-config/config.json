@@ -1,0 +1,9 @@
+{
+  "server": true,
+  "session_ttl_min": "5s",
+  "client_addr": "0.0.0.0",
+  "bootstrap_expect": 3,
+  "ports": {
+    "dns": 53
+  }
+}

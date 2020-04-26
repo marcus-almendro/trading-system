@@ -1,0 +1,7 @@
+<mat-form-field class="form-field-margin">
+  <mat-label>Select your trader</mat-label>
+  <mat-select [(value)]="this.stateService.traderId">
+    <mat-option>None</mat-option>
+    <mat-option *ngFor="let trader of this.traderService.tradersAPI" [value]="trader.id">{{ trader.label }}</mat-option>
+  </mat-select>
+</mat-form-field>

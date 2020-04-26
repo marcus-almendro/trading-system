@@ -1,0 +1,9 @@
+<div (mousedown)="$event.stopPropagation()" (touchstart)="$event.stopPropagation()">
+    <div class="container">
+        <app-select-symbol (symbolSelected)="symbolSelected($event)"></app-select-symbol>
+    </div>
+    <div class="mat-elevation-z2">
+        <app-order-book-side #buyTable [displayedColumns]="buyColumns" [headerName]="'Buy'"></app-order-book-side>
+        <app-order-book-side #sellTable [displayedColumns]="sellColumns" [headerName]="'Sell'"></app-order-book-side>
+    </div>
+</div>

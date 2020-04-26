@@ -1,0 +1,7 @@
+<mat-form-field class="form-field-margin">
+    <mat-label>Select a symbol</mat-label>
+    <mat-select (selectionChange)="setSymbol($event.value)">
+        <mat-option>None</mat-option>
+        <mat-option *ngFor="let s of this.symbolsService.symbols" [value]="s.name">{{ s.name }}</mat-option>
+    </mat-select>
+</mat-form-field>

@@ -1,0 +1,21 @@
+<div class="form-create-order" (mousedown)="$event.stopPropagation()" (touchstart)="$event.stopPropagation()">
+  <app-select-symbol (symbolSelected)="symbolSelected($event)"></app-select-symbol>
+  <div>
+    <label>Side: </label>
+    <mat-radio-group name="side" [(ngModel)]="side">
+      <mat-radio-button value="1">Buy</mat-radio-button>
+      <mat-radio-button value="2">Sell</mat-radio-button>
+    </mat-radio-group>
+  </div>
+  <mat-form-field>
+    <mat-label>Price</mat-label>
+    <input type="number" matInput [(ngModel)]="price">
+  </mat-form-field>
+  <mat-form-field>
+    <mat-label>Size</mat-label>
+    <input type="number" matInput [(ngModel)]="size">
+  </mat-form-field>
+  <div class="centered-button">
+    <button mat-raised-button color="primary" (click)="sendOrder()">Send</button>
+  </div>
+</div>

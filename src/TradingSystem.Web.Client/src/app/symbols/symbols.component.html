@@ -1,0 +1,14 @@
+<div class="mat-elevation-z2" (mousedown)="$event.stopPropagation()" (touchstart)="$event.stopPropagation()">
+  <table mat-table class="full-width-table" matSort aria-label="Elements">
+
+    <ng-container matColumnDef="symbol">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>All symbols</th>
+      <td mat-cell *matCellDef="let row">{{row.name}}</td>
+    </ng-container>
+
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+</div>
+<button mat-mini-fab class="add-new-symbol" aria-label="Add new symbol" (click)="openDialog()">
+  <mat-icon>add</mat-icon>
+</button>

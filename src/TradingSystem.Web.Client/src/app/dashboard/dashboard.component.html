@@ -1,0 +1,24 @@
+<div class="dashboard-container">
+  <gridster [options]="options">
+    <gridster-item [item]="orderBook">
+      <div class="widget-header">Order Book</div>
+      <app-order-book></app-order-book>
+    </gridster-item>
+    <gridster-item [item]="traders">
+      <div class="widget-header">Login Simulation</div>
+      <app-traders></app-traders>
+    </gridster-item>
+    <gridster-item [item]="symbols">
+      <div class="widget-header">Symbols</div>
+      <app-symbols></app-symbols>
+    </gridster-item>
+    <gridster-item [item]="lastTrades">
+      <div class="widget-header">Last Trades</div>
+      <app-last-trades></app-last-trades>
+    </gridster-item>
+    <gridster-item [item]="createOrder">
+      <div class="widget-header">New Order</div>
+      <app-create-order></app-create-order>
+    </gridster-item>
+  </gridster>
+</div>

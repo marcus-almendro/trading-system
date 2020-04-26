@@ -1,0 +1,22 @@
+<div (mousedown)="$event.stopPropagation()" (touchstart)="$event.stopPropagation()">
+    <div class="container">
+        <app-select-symbol (symbolSelected)="symbolSelected($event)"></app-select-symbol>
+    </div>
+    <div class="mat-elevation-z2">
+        <table mat-table class="full-width-table" aria-label="Elements">
+            
+            <ng-container matColumnDef="price">
+                <th mat-header-cell *matHeaderCellDef>Price</th>
+                <td mat-cell *matCellDef="let row">{{row.price}}</td>
+            </ng-container>
+            
+            <ng-container matColumnDef="executedSize">
+                <th mat-header-cell *matHeaderCellDef>Executed Size</th>
+                <td mat-cell *matCellDef="let row">{{row.executedSize}}</td>
+            </ng-container>
+            
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        </table>
+    </div>
+</div>
