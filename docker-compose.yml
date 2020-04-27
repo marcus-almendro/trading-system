@@ -2,10 +2,7 @@ version: '3'
 services:
   
   web1:
-    build: 
-      context: .
-      dockerfile: ./Web.dockerfile
-    image: trading-system-webapp
+    image: marcusalmendro/trading-system-webapp
     ports:
       - "8080:80"
     dns: 
@@ -21,10 +18,7 @@ services:
       - backend
 
   server1:
-    build: 
-      context: .
-      dockerfile: ./Server.dockerfile
-    image: trading-system-server
+    image: marcusalmendro/trading-system-server
     ports:
       - "5000:5000"
     environment: 
@@ -37,7 +31,7 @@ services:
         ipv4_address: 172.16.0.11
 
   server2:
-    image: trading-system-server
+    image: marcusalmendro/trading-system-server
     ports:
       - "5001:5000"
     environment: 
@@ -87,7 +81,7 @@ services:
     environment: 
       CONSUL_ALLOW_PRIVILEGED_PORTS: 'true'
     volumes:
-      - ./consul-config/config.json:/consul.d/config.json:ro
+      - ./src/consul-config/config.json:/consul.d/config.json:ro
     networks:
       backend:
         ipv4_address: 172.16.0.21
@@ -116,7 +110,7 @@ services:
       backend:
         ipv4_address: 172.16.0.24
     volumes:
-      - ./consul-config/server1.json:/consul.d/server1.json:ro
+      - ./src/consul-config/server1.json:/consul.d/server1.json:ro
     command: "agent -enable-script-checks -config-dir=./consul.d"
 
   # agent for server 2
@@ -126,7 +120,7 @@ services:
       backend:
         ipv4_address: 172.16.0.25
     volumes:
-      - ./consul-config/server2.json:/consul.d/server2.json:ro
+      - ./src/consul-config/server2.json:/consul.d/server2.json:ro
     command: "agent -enable-script-checks -config-dir=./consul.d"
 
 networks:
